@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'election'
 ]
 
 MIDDLEWARE = [
@@ -78,9 +79,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'electionsystem',
         'USER': 'mehnaz',
-        'PASSWORD':'password',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT':'',
+        'PORT': '',
 
     }
 }
@@ -123,3 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Custom Django auth settings
+
+AUTH_USER_MODEL = 'election.User'
