@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.views import generic
 from django.views.generic.edit import CreateView
 from .models import User, Candidate, Voter
-from .forms import CandidateSignUpForm, voterSignUpForm
+from .forms import CandidateSignUpForm, VoterSignUpForm
 from django.contrib.auth import login
 
 # Create your views here.
@@ -28,9 +28,9 @@ class CandidateSignUpView(CreateView):
         return redirect('signup')
 
 
-class voterSignUpView(CreateView):
+class VoterSignUpView(CreateView):
     model = User
-    form_class = voterSignUpForm
+    form_class = VoterSignUpForm
     template_name='voter_signup.html'
 
     def get_context_data(self, **kwargs):

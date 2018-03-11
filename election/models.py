@@ -16,4 +16,6 @@ class Candidate(models.Model):
 
 class Voter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    roll = models.CharField(max_length=7)
     has_voted = models.BooleanField(default=False)
