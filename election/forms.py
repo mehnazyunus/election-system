@@ -6,7 +6,7 @@ from .models import Candidate, Voter, User
 class CandidateSignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
-        model = Candidate
+        model = User
         # fields = ['user.username', 'user.password', 'post']
 
     def save(self, commit=True):
