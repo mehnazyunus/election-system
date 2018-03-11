@@ -15,3 +15,15 @@ class CandidateSignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class voterSignUpForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model=User
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_candidate = True
+        if commit:
+            user.save()
+        return user
