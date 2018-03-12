@@ -15,10 +15,18 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">College Elections</a>
             </div>
+            <div>
+                <ul class="nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li>
+                        Signed in as {{ user.username }}
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </nav>
     {% block body %} {% endblock %}
-
 
 </body>
 </html>
