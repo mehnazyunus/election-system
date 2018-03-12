@@ -9,11 +9,11 @@
         <div class="col-sm-12 col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Log In as Candidate </h3>
+                    <h3>Log In as Voter </h3>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
-                    <form class="form-horizontal" role="form" action="{% url 'candidate_login'%}" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" action="{% url 'voter_login'%}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="id_username">
@@ -39,7 +39,7 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    Don't have an account? <a href="{% url 'candidate_signup' %}">Click here</a> to register.
+                    Don't have an account? <a href="{% url 'voter_signup' %}">Click here</a> to register.
                 </div>
             </div>
         </div>

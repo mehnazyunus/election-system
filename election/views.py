@@ -43,7 +43,7 @@ class VoterSignUpView(CreateView):
         return redirect('signup')
 
 
-def login_user(request):
+def login_candidate(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -58,3 +58,21 @@ def login_user(request):
         else:
             return render(request, 'candidate_login.html', {'error_message': 'Invalid login'})
     return render(request, 'candidate_login.html')
+
+
+def login_voter(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                # albums = Album.objects.filter(user=request.user)
+                return render(request, 'base.html')  # , {'albums': albums})
+            else:
+                return render(request, 'voter_login.html', {'error_message': 'Your account has been disabled'})
+        else:
+            return render(request, 'voter_login.html', {'error_message': 'Invalid login'})
+    return render(request, 'voter_login.html')
+
