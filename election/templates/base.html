@@ -18,6 +18,7 @@
             <ul class="nav navbar-nav navbar-right ">
                 {% if user.is_authenticated %}
                     <li><a href="#">Signed in as {{ user.username }}</a></li>
+                    <li><a href="{%  url 'logout' %}?next={% url 'signup' %}"> Logout</a></li>
                 {% endif %}
             </ul>
 

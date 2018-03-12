@@ -76,3 +76,7 @@ def login_voter(request):
             return render(request, 'voter_login.html', {'error_message': 'Invalid login'})
     return render(request, 'voter_login.html')
 
+
+def logout(request):
+    logout(request)
+    return render(request, 'signup.html', context=None)
