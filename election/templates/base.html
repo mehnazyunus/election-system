@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,15 +15,12 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">College Elections</a>
             </div>
-            <div>
-                <ul class="nav navbar-right">
-                    {% if user.is_authenticated %}
-                        <li>
-                        Signed in as {{ user.username }}
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
+            <ul class="nav navbar-nav navbar-right ">
+                {% if user.is_authenticated %}
+                    <li><a href="#">Signed in as {{ user.username }}</a></li>
+                {% endif %}
+            </ul>
+
         </div>
     </nav>
     {% block body %} {% endblock %}
