@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Candidate Profiles{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col=sm-12">
+                <h3>Candidate Profiles</h3>
+            </div>
+            {% if candidates %}
+                {% for candidate in candidates %}{% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

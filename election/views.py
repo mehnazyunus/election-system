@@ -57,6 +57,11 @@ class VoterDetailsView(generic.DetailView):
     template_name = 'voter_details.html'
 
 
+def candidate_profiles(request):
+    candidates = Candidate.objects.all()
+    return render(request, 'candidate_profiles.html', {'candidates': candidates})
+
+
 def login_candidate(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -84,8 +89,8 @@ def login_voter(request):
             if user.is_active:
                 login(request, user)
                 # albums = Album.objects.filter(user=request.user)
-                return render(request, 'base.html')  # , {'albums': albums})
-                # return redirect('voter_details', pk=user.voter.pk)
+                # return render(request, 'base.html')  # , {'albums': albums})
+                return redirect('voter_details', pk=user.voter.pk)
             else:
                 return render(request, 'voter_login.html', {'error_message': 'Your account has been disabled'})
         else:

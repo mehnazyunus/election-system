@@ -18,6 +18,7 @@
             <ul class="nav navbar-nav navbar-right ">
                 {% if user.is_authenticated %}
                     {% if user.is_voter %}
+                        <li><a href="#">Candidate Profiles</a></li>
                         <li><a href="#">Vote</a></li>
                     {% endif %}
                     <li><a href="#">Signed in as {{ user.username }}</a></li>
