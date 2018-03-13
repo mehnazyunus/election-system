@@ -62,6 +62,11 @@ def candidate_profiles(request):
     return render(request, 'candidate_profiles.html', {'candidates': candidates})
 
 
+def vote_preview(request):
+    candidates = Candidate.objects.all()
+    return render(request, 'vote_preview.html', {'candidates': candidates})
+
+
 def login_candidate(request):
     if request.method == "POST":
         username = request.POST['username']

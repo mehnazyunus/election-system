@@ -11,5 +11,6 @@ urlpatterns = [
     path('accounts/logout/', views.logout, name='logout'),
     path('candidate/<int:pk>', views.CandidateDetailsView.as_view(), name='candidate_details'),
     path('voter/<int:pk>', views.VoterDetailsView.as_view(), name='voter_details'),
-    path('candidate_profiles', views.candidate_profiles, name='candidate_profiles')
+    path('candidate_profiles', views.candidate_profiles, name='candidate_profiles'),
+    path('voter/vote_preview', views.vote_preview, name='vote_preview')
 ]
