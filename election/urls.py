@@ -9,4 +9,6 @@ urlpatterns = [
     path('accounts/login/voter_login/', views.login_voter, name='voter_login'),
     path('accounts/login/candidate_login/', views.login_candidate, name='candidate_login'),
     path('accounts/logout/', views.logout, name='logout'),
+    path('candidate/<int:pk>', views.CandidateDetailsView.as_view(), name='candidate_details'),
+    path('voter/<int:pk>', views.VoterDetailsView.as_view(), name='voter_details')
 ]

@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView
 from .models import User, Candidate, Voter
 from .forms import CandidateSignUpForm, VoterSignUpForm
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -43,6 +45,18 @@ class VoterSignUpView(CreateView):
         return redirect('signup')
 
 
+@method_decorator([login_required], name='dispatch')
+class CandidateDetailsView(generic.DetailView):
+    model = Candidate
+    template_name = 'candidate_details.html'
+
+
+@method_decorator([login_required], name='dispatch')
+class VoterDetailsView(generic.DetailView):
+    model = Voter
+    template_name = 'voter_details.html'
+
+
 def login_candidate(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -52,7 +66,8 @@ def login_candidate(request):
             if user.is_active:
                 login(request, user)
                 # albums = Album.objects.filter(user=request.user)
-                return render(request, 'base.html')  # , {'albums': albums})
+                # return render(request, 'candidate_details.html')  # , {'albums': albums})
+                return redirect('candidate_details', pk=user.candidate.pk)
             else:
                 return render(request, 'candidate_login.html', {'error_message': 'Your account has been disabled'})
         else:
@@ -70,6 +85,7 @@ def login_voter(request):
                 login(request, user)
                 # albums = Album.objects.filter(user=request.user)
                 return render(request, 'base.html')  # , {'albums': albums})
+                # return redirect('voter_details', pk=user.voter.pk)
             else:
                 return render(request, 'voter_login.html', {'error_message': 'Your account has been disabled'})
         else:
