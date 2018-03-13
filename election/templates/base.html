@@ -18,12 +18,14 @@
             <ul class="nav navbar-nav navbar-right ">
                 {% if user.is_authenticated %}
                     {% if user.is_voter %}
-                        <li><a href="#">Candidate Profiles</a></li>
+                        <li><a href="{% url 'candidate_profiles' %}">Candidate Profiles</a></li>
+                        <li><a href="{% url 'voter_details' pk=user.voter.pk %}">My Profile</a></li>
                         <li><a href="#">Vote</a></li>
                     {% endif %}
                     <li><a href="#">Signed in as {{ user.username }}</a></li>
                     <li><a href="{%  url 'logout' %}?next={% url 'signup' %}"> Logout</a></li>
                 {% endif %}
+
             </ul>
 
         </div>
