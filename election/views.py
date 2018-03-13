@@ -27,7 +27,7 @@ class CandidateSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('signup')
+        return redirect('candidate_details', pk=user.candidate.pk)
 
 
 class VoterSignUpView(CreateView):
@@ -42,7 +42,7 @@ class VoterSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('signup')
+        return redirect('voter_details', pk=user.voter.pk)
 
 
 @method_decorator([login_required], name='dispatch')
