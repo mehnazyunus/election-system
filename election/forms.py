@@ -23,13 +23,12 @@ class CandidateSignUpForm(UserCreationForm, forms.ModelForm):
         candidate.name = self.cleaned_data.get('name')
         candidate.roll = self.cleaned_data.get('roll')
         candidate.avatar = self.cleaned_data.get('avatar')
-        candidate.save()
-        return user
-        """try:
+
+        try:
             w, h = get_image_dimensions(candidate.avatar)
 
             # validate dimensions
-            max_width = max_height = 100
+            max_width = max_height = 200
             if w > max_width or h > max_height:
                 raise forms.ValidationError(
                     u'Please use an image that is '
@@ -48,11 +47,12 @@ class CandidateSignUpForm(UserCreationForm, forms.ModelForm):
 
         except AttributeError:
            
-            Handles case when we are updating the user profile
-            and do not supply a new avatar
+            """Handles case when we are updating the user profile
+            and do not supply a new avatar"""
             
-            pass"""
-
+            pass
+        candidate.save()
+        return user
 
 
 
