@@ -14,6 +14,7 @@ class Candidate(models.Model):
     votes = models.IntegerField(default=0)
     name = models.CharField(max_length=30, default="votername")
     roll = models.CharField(max_length=7, default="rollno")
+    avatar = models.FileField()
 
 
 class Voter(models.Model):

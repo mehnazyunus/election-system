@@ -129,3 +129,6 @@ STATIC_URL = '/static/'
 # Custom Django auth settings
 
 AUTH_USER_MODEL = 'election.User'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
