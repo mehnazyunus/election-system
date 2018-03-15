@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -20,9 +19,10 @@
                 <a class="navbar-brand" href="#">College Elections</a>
             </div>
             <ul class="nav navbar-nav navbar-right nav-tabs ">
+                <li><a href="{% url 'candidate_profiles' %}">Candidate Profiles</a></li>
+                <li><a href="{% url 'results' %}">Election results</a></li>
                 {% if user.is_authenticated %}
                     {% if user.is_voter %}
-                        <li><a href="{% url 'candidate_profiles' %}">Candidate Profiles</a></li>
                         <li><a href="{% url 'voter_details' pk=user.voter.pk %}">My Profile</a></li>
                         {% if not user.voter.has_voted %}
                             <li><a href="{% url 'vote_preview' %}">Vote</a></li>
@@ -30,13 +30,13 @@
                     {% endif %}
                     <li><a href="#">Signed in as {{ user.username }}</a></li>
                     <li><a href="{%  url 'logout' %}?next={% url 'signup' %}"> Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'admin:login' %}">Admin</a></li>
                 {% endif %}
-
+                {% block list %}{% endblock %}
             </ul>
-
         </div>
     </nav>
     {% block body %} {% endblock %}
-
 </body>
 </html>

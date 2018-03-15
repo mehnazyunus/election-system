@@ -1,5 +1,8 @@
 from django.urls import path, include
 from . import views
+from django.contrib import admin
+
+admin.site.site_header = 'Election administration'
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
@@ -14,5 +17,6 @@ urlpatterns = [
     path('candidate_profiles', views.candidate_profiles, name='candidate_profiles'),
     path('voter/vote_preview', views.vote_preview, name='vote_preview'),
     path('voter/vote_confirm/<int:pk>', views.vote_confirm, name='vote_confirm'),
-    path('vote/vote/<int:pk>', views.vote, name='vote')
+    path('vote/vote/<int:pk>', views.vote, name='vote'),
+    path('results', views.results, name='results')
 ]

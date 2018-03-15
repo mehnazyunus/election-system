@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Election results{% endblock %}
+
+{% block list %}
+    <li><a href="{%url 'signup'%}">Sign up/Login</a></li>
+{% endblock %}
+
+{% block body %}
+    {% if election.started %}
+        {% if election.ended %}
+            <h3>Winners</h3>
+            {% for winner in winners %}
+                <div class="col-sm-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <img src="{{candidate.avatar.url }}" class="img-responsive">
+                            <h3>{{winner.name}}</h3>
+                            <h4>{{winner.roll}}</h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>Elections are currently going on. Please come back later for the results</h4>
+        {% endif %}
+    {% else %}
+        <h4>College elections have not started yet. Please come back later for the results.</h4>
+    {% endif %}
+{% endblock %}
