@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views import generic
 from django.views.generic.edit import CreateView
@@ -7,6 +7,7 @@ from .forms import CandidateSignUpForm, VoterSignUpForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -65,6 +66,26 @@ def candidate_profiles(request):
 def vote_preview(request):
     candidates = Candidate.objects.all()
     return render(request, 'vote_preview.html', {'candidates': candidates})
+
+
+def vote_confirm(request, pk):
+    candidate = get_object_or_404(Candidate, pk=pk)
+    return render(request, 'vote_confirm.html', {'candidate': candidate})
+
+
+def vote(request, pk):
+    candidate = get_object_or_404(Candidate, pk=pk)
+    try:
+        if not request.user.voter.has_voted:
+            candidate.votes += 1
+            request.user.voter.has_voted = True
+            request.user.voter.save()
+            candidate.save()
+
+    except (KeyError, Candidate.DoesNotExist):
+        return JsonResponse({'success': False})
+    else:
+        return JsonResponse({'success': True})
 
 
 def login_candidate(request):

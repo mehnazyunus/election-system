@@ -12,5 +12,7 @@ urlpatterns = [
     path('candidate/<int:pk>', views.CandidateDetailsView.as_view(), name='candidate_details'),
     path('voter/<int:pk>', views.VoterDetailsView.as_view(), name='voter_details'),
     path('candidate_profiles', views.candidate_profiles, name='candidate_profiles'),
-    path('voter/vote_preview', views.vote_preview, name='vote_preview')
+    path('voter/vote_preview', views.vote_preview, name='vote_preview'),
+    path('voter/vote_confirm/<int:pk>', views.vote_confirm, name='vote_confirm'),
+    path('vote/vote/<int:pk>', views.vote, name='vote')
 ]
