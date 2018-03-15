@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Voter Details{% endblock %}
 {% block body %}
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            alert('{{ message }}');
+        </script>
+        {% endfor %}
+    {% endif %}
     <h1>{{ voter.name }}</h1>
 {% endblock %}

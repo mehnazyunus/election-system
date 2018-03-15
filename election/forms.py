@@ -55,9 +55,6 @@ class CandidateSignUpForm(UserCreationForm, forms.ModelForm):
         return user
 
 
-
-
-
 class VoterSignUpForm(UserCreationForm):
 
     name = forms.CharField(max_length=30)

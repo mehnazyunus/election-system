@@ -22,3 +22,8 @@ class Voter(models.Model):
     name = models.CharField(max_length=30, default="votername")
     roll = models.CharField(max_length=7, default="rollno")
     has_voted = models.BooleanField(default=False)
+
+
+class Election(models.Model):
+    started = models.BooleanField(default=False)
+    ended = models.BooleanField(default=True)

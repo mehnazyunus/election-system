@@ -8,6 +8,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import JsonResponse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -85,7 +86,8 @@ def vote(request, pk):
     except (KeyError, Candidate.DoesNotExist):
         return JsonResponse({'success': False})
     else:
-        return JsonResponse({'success': True})
+        messages.success(request, 'Vote successful!')
+        return redirect('voter_details', pk=request.user.voter.pk)
 
 
 def login_candidate(request):
