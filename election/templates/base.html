@@ -24,7 +24,9 @@
                     {% if user.is_voter %}
                         <li><a href="{% url 'candidate_profiles' %}">Candidate Profiles</a></li>
                         <li><a href="{% url 'voter_details' pk=user.voter.pk %}">My Profile</a></li>
-                        <li><a href="{% url 'vote_preview' %}">Vote</a></li>
+                        {% if not user.voter.has_voted %}
+                            <li><a href="{% url 'vote_preview' %}">Vote</a></li>
+                        {% endif %}
                     {% endif %}
                     <li><a href="#">Signed in as {{ user.username }}</a></li>
                     <li><a href="{%  url 'logout' %}?next={% url 'signup' %}"> Logout</a></li>
