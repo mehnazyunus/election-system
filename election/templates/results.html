@@ -9,12 +9,15 @@
 {% block body %}
     {% if election.started %}
         {% if election.ended %}
-            <h3>Winners</h3>
+            <div class="col-sm-12">
+                <h3>Winners</h3>
+            </div>
+
             {% for winner in winners %}
-                <div class="col-sm-4">
+                <div class="col-sm-12">
                     <div class="thumbnail">
                         <div class="caption">
-                            <img src="{{candidate.avatar.url }}" class="img-responsive">
+                            <img src="{{winner.avatar.url }}" class="img-responsive" style="height: 200px; width:200px">
                             <h3>{{winner.name}}</h3>
                             <h4>{{winner.roll}}</h4>
                         </div>

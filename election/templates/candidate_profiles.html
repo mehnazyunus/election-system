@@ -2,6 +2,12 @@
 
 {% block title %}Candidate Profiles{% endblock %}
 
+{% block list %}
+    {% if not user.is_authenticated %}
+        <li><a href="{%url 'signup'%}">Sign up/Login</a></li>
+    {% endif %}
+{% endblock %}
+
 {% block body %}
     <div class="container-fluid">
         <div class="row">
@@ -13,11 +19,9 @@
                 <div class="col-sm-4">
                     <div class="thumbnail">
                         <div class="caption">
+                            <img src="{{candidate.avatar.url }}" class="img-responsive" style="height: 200px; width:200px">
                             <h3>{{candidate.name}}</h3>
                             <h4>{{candidate.roll}}</h4>
-                            <a href="{%  url 'candidate_profiles'  %}">
-                            <img src="{{candidate.avatar.url }}" class="img-responsive">
-                            </a>
                         </div>
                     </div>
                 </div>

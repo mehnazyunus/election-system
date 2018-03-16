@@ -8,5 +8,13 @@
         </script>
         {% endfor %}
     {% endif %}
-    <h1>{{ voter.name }}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>My Profile</h2>
+                <h3>{{ voter.name }}</h3>
+                <h4>{{ voter.roll }}</h4>
+            </div>
+        </div>
+    </div>
 {% endblock %}
