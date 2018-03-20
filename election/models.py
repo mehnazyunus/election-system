@@ -30,6 +30,7 @@ class Voter(models.Model):
     roll = models.CharField(max_length=7, default="rollno")
     has_voted = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
+    avatar = models.ImageField(default="https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png")
 
     def __str__(self):
         return self.name + ':' + self.user.username

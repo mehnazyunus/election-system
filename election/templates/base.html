@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' media="screen">
-    <link rel="stylesheet" type="text/css" href="{% static 'election/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'election/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -16,9 +16,21 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">College Elections</a>
+                <button type="button" class="navbar-toggle" data-target="#main-navbar" data-toggle="collapse">
+                    <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
-            <ul class="nav navbar-nav navbar-right nav-tabs ">
+            <div class="navbar-collapse collapse" id="main-navbar">
+                <ul class="nav navbar-brand">
+                    <li class="active" >College Elections</li>
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right nav-tabs ">
                 <li><a href="{% url 'candidate_profiles' %}">Candidate Profiles</a></li>
                 <li><a href="{% url 'results' %}">Election results</a></li>
                 {% if user.is_authenticated %}
@@ -28,13 +40,14 @@
                             <li><a href="{% url 'vote_preview' %}">Vote</a></li>
                         {% endif %}
                     {% endif %}
-                    <li><a href="#">Signed in as {{ user.username }}</a></li>
+                    <li class="active">Signed in as {{ user.username }}</li>
                     <li><a href="{%  url 'logout' %}?next={% url 'signup' %}"> Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'admin:login' %}">Admin</a></li>
                 {% endif %}
                 {% block list %}{% endblock %}
-            </ul>
+                </ul>
+            </div>
         </div>
     </nav>
     {% block body %} {% endblock %}
