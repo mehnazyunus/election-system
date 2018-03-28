@@ -84,5 +84,41 @@ img {
 
 body{
     font-family: Roboto;
+<<<<<<< HEAD
 
+=======
+}
+
+navigation {
+width: 180px;
+font-family: Arial, Helvetica, sans-serif;
+    font-size: 90%;
+    font-weigth: bold;
+}
+
+navigation ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+navigation li {
+border-bottom: 1px solid #C3DBFB;
+}
+
+navigation li a:link, #navigation li a:visited {
+display: block;
+padding: 5px 5px 5px 0.5em;
+border-left: 12px solid #033CC2;
+border-right: 1px solid #033CC2;
+background-color: #5386F2;
+color: #FFFFFF;
+text-decoration: none;
+  <font color='Red'>  width: 100%; </font>
+}
+
+navigation li a:hover {
+background-color: #033CC2;
+color: #FFFFFF;
+>>>>>>> 0e090d60e1b6f33d06925985b66c338845cb13a5
 }
