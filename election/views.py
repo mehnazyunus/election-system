@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from django.http import JsonResponse
 from django.contrib import messages
 from django.db.models import Max
+from .decorators import voter_required
 
 # Create your views here.
 
@@ -66,10 +67,13 @@ def login_candidate(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                login(request, user)
-                # albums = Album.objects.filter(user=request.user)
-                # return render(request, 'candidate_details.html')  # , {'albums': albums})
-                return redirect('candidate_details', pk=user.candidate.pk)
+                if user.is_candidate:
+                    login(request, user)
+                    # albums = Album.objects.filter(user=request.user)
+                    # return render(request, 'candidate_details.html')  # , {'albums': albums})
+                    return redirect('candidate_details', pk=user.candidate.pk)
+                else:
+                    return render(request, 'candidate_login.html', {'error_message': 'Invalid candidate credentials'})
             else:
                 return render(request, 'candidate_login.html', {'error_message': 'Your account has been disabled'})
         else:
@@ -84,10 +88,13 @@ def login_voter(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                login(request, user)
-                # albums = Album.objects.filter(user=request.user)
-                # return render(request, 'base.html')  # , {'albums': albums})
-                return redirect('voter_details', pk=user.voter.pk)
+                if user.is_voter:
+                    login(request, user)
+                    # albums = Album.objects.filter(user=request.user)
+                    # return render(request, 'base.html')  # , {'albums': albums})
+                    return redirect('voter_details', pk=user.voter.pk)
+                else:
+                    return render(request, 'voter_login.html', {'error_message': 'Invalid voter credentials'})
             else:
                 return render(request, 'voter_login.html', {'error_message': 'Your account has been disabled'})
         else:
@@ -121,7 +128,7 @@ def vote_confirm(request, pk):
     return render(request, 'vote_confirm.html', {'candidate': candidate})
 
 
-@method_decorator([login_required], name='dispatch')
+@method_decorator([login_required, voter_required], name='dispatch')
 class VoterDetailsView(generic.DetailView):
     model = Voter
     template_name = 'voter_details.html'

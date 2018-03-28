@@ -13,23 +13,19 @@
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
-                    <form class="form-horizontal" role="form" action="{% url 'candidate_login'%}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{% url 'candidate_login'%}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="id_username">
-                                Username:
+                            <label class="control-label" for="id_username">
+                                Username
                             </label>
-                            <div class="col-sm-8">
-                                <input id="id_username" maxlength="30" name="username" type="text">
-                            </div>
+                            <input id="id_username" maxlength="30" name="username" type="text">
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="id_password">
-                                Password:
+                            <label class="control-label" for="id_password">
+                                Password
                             </label>
-                            <div class="col-sm-8">
-                                <input id="id_password" maxlength="30" name="password" type="password">
-                            </div>
+                           <input id="id_password" maxlength="30" name="password" type="password">
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
