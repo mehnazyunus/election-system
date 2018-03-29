@@ -7,13 +7,10 @@
     {% load staticfiles %}
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<<<<<<< HEAD
     <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css' media="screen">
     <link rel="stylesheet" type="text/css" href="{% static 'election/style.css' %}"/>
-=======
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' media="screen">
     <link rel="stylesheet" type="text/css" href="{% static 'election/style.css' %}">
->>>>>>> 0e090d60e1b6f33d06925985b66c338845cb13a5
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -45,7 +42,7 @@
                             <li><a href="{% url 'vote_preview' %}">Vote</a></li>
                         {% endif %}
                     {% endif %}
-                    <li class="active">Signed in as {{ user.username }}</li>
+                    <li class="active"><a href="#">Signed in as {{ user.username }}</a></li>
                     <li><a href="{%  url 'logout' %}?next={% url 'signup' %}"> Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'admin:login' %}">Admin</a></li>
