@@ -7,6 +7,7 @@ admin.site.register(Candidate)
 admin.site.register(Voter)
 admin.site.register(Election)
 
+
 # Register your models here.
 # admin
 # admin@example.com

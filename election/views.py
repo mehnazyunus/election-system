@@ -111,17 +111,36 @@ def vote(request, pk):
     candidate = get_object_or_404(Candidate, pk=pk)
     try:
         if not request.user.voter.has_voted:
-            candidate.votes += 1
-            request.user.voter.has_voted = True
+            candidate.is_done = False
+
+            if not request.user.voter.has_voted_a and not candidate.is_done:
+                if candidate.post == 'President':
+                        candidate.votes += 1
+                        candidate.is_done = True
+                        request.user.voter.has_voted_a = True
+
+            if not request.user.voter.has_voted_b and not candidate.is_done:
+                if candidate.post == 'General Secretary':
+                        candidate.votes += 1
+                        candidate.is_done = True
+                        request.user.voter.has_voted_b = True
+            if not request.user.voter.has_voted_c and not candidate.is_done:
+                if candidate.post == 'Net Councillor':
+                        candidate.votes += 1
+                        candidate.is_done = True
+                        request.user.voter.has_voted_c = True
+            if request.user.voter.has_voted_a and request.user.voter.has_voted_b and request.user.voter.has_voted_c:
+                        request.user.voter.has_voted = True
+            # candidate.votes += 1
+
             request.user.voter.save()
             candidate.save()
-
     except (KeyError, Candidate.DoesNotExist):
         return JsonResponse({'success': False})
+
     else:
         messages.success(request, 'Vote successful!')
         return redirect('voter_details', pk=request.user.voter.pk)
-
 
 def vote_confirm(request, pk):
     candidate = get_object_or_404(Candidate, pk=pk)
