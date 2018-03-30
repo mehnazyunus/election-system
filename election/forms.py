@@ -7,7 +7,9 @@ from django.core.files.images import get_image_dimensions
 
 class CandidateSignUpForm(UserCreationForm, forms.ModelForm):
 
-    POST_CHOICES = [('post1', 'President'), ('post2', 'General Secretary'), ('post3', 'Net Councillor'),]
+    POST_CHOICES = [('President', 'President'),
+                    ('General Secretary', 'General Secretary'),
+                    ('Net Councillor', 'Net Councillor'), ]
     name = forms.CharField(max_length=30)
     roll = forms.CharField(max_length=7)
     avatar = forms.ImageField()

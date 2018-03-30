@@ -159,7 +159,52 @@ def vote_preview(request):
 
 
 def results(request):
+    """def results(request):
+            i = 0
+            max_votes = [0, 0, 0]
+            winners = []
+            election = get_object_or_404(Election, pk=1)
+            for posts in Candidate.post:
+                for can in Candidate.objects.all():
+                    if can.post == posts and can.votes > max_votes[i]:
+                        max_votes[i] = can.votes
+                    winners.append(Candidate.objects.all().filter(votes__exact=max_votes[i]))
+                    max_votes = Candidate.objects.all().aggregate(Max('votes'))
+        winners = Candidate.objects.all().filter(votes__exact=max_votes['votes__max'])
+
+        max_votes_b = Candidate.objects.values('post').aggregate(Max('votes'))
+        max_votes_c = Candidate.objects.values('post').aggregate(Max('votes'))
+        winners_a = Candidate.objects.all().filter(votes__exact=max_votes_a['votes__max'])
+        winners_b = Candidate.objects.all().filter(votes__exact=max_votes_b['votes__max'])
+         max_votes_a = Candidate.objects.all().aggregate(Max('votes'))
+        winners_a = Candidate.objects.all().filter(votes__exact=max_votes_a['votes__max'])
+        return render(request, 'results.html', {'election': election, 'winners_a': winners_a})
+         election = get_object_or_404(Election, pk=1)
+    max_votes = Candidate.objects.values('post').aggregate(Max('votes'))
+    winners = Candidate.objects.all().filter(votes__exact=max_votes['votes__max'])"""
+    e = 0
+    max_votes = [0, 0, 0]
+    winner_a = {}
+    winner_b = {}
+    winner_c = {}
     election = get_object_or_404(Election, pk=1)
-    max_votes = Candidate.objects.all().aggregate(Max('votes'))
-    winners = Candidate.objects.all().filter(votes__exact=max_votes['votes__max'])
-    return render(request, 'results.html', {'election': election, 'winners': winners})
+    posts = Candidate.objects.values('post')
+    candidate = Candidate.objects.values('votes', 'post')
+
+    for posting in posts:
+        if e < 3:
+            for can in Candidate.objects.all():
+                if can.post == posting and can.votes > max_votes[e]:
+                    max_votes[e] = can.votes
+            if e is 0:
+                winner_a = {Candidate.objects.values('post').filter(votes__exact=max_votes[0])}
+            elif e is 1:
+                winner_b = {Candidate.objects.values('post').filter(votes__exact=max_votes[1])}
+            elif e is 2:
+                winner_c = {Candidate.objects.values('post').filter(votes__exact=max_votes[2])}
+            e = e + 1
+        else:
+            break
+
+    return render(request, 'results.html', {'election': election, 'winner_a': winner_a, 'winner_b': winner_b, 'winner_c': winner_c})
+

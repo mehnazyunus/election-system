@@ -13,17 +13,64 @@
                 <h3>Winners</h3>
             </div>
 
-            {% for winner in winners %}
+
+               {% for winner in winner_a %}
                 <div class="col-sm-12">
                     <div class="thumbnail">
                         <div class="caption">
                             <img src="{{winner.avatar.url }}" class="img-responsive" style="height: 200px; width:200px">
                             <h3>{{winner.name}}</h3>
                             <h4>{{winner.roll}}</h4>
+                            <h4>{{winner.post}}</h4>
                         </div>
                     </div>
                 </div>
             {% endfor %}
+            {% for winner in winner_b %}
+                <div class="col-sm-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <img src="{{winner.avatar.url }}" class="img-responsive" style="height: 200px; width:200px">
+                            <h3>{{winner.name}}</h3>
+                            <h4>{{winner.roll}}</h4>
+                            <h4>{{winner.post}}</h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for winner in winner_c %}
+                <div class="col-sm-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <img src="{{winner.avatar.url }}" class="img-responsive" style="height: 200px; width:200px">
+                            <h3>{{winner.name}}</h3>
+                            <h4>{{winner.roll}}</h4>
+                            <h4>{{winner.post}}</h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+               <!-- <div class="col-sm-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <img src="{{winner.avatar.url }}" class="img-responsive" style="height: 200px; width:200px">
+                            <h3>{{winners_b.name}}</h3>
+                            <h4>{{winners_b.roll}}</h4>
+                            <h4>{{winners_b.post}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <img src="{{winner.avatar.url }}" class="img-responsive" style="height: 200px; width:200px">
+                            <h3>{{winners_c.name}}</h3>
+                            <h4>{{winners_c.roll}}</h4>
+                            <h4>{{winners_c.post}}</h4>
+                        </div>
+                    </div>
+                </div>-->
+
         {% else %}
             <h4>Elections are currently going on. Please come back later for the results</h4>
         {% endif %}

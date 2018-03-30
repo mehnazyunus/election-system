@@ -40,5 +40,5 @@ class Voter(models.Model):
 
 
 class Election(models.Model):
-    started = models.BooleanField(default=False)
+    started = models.BooleanField(default=True)
     ended = models.BooleanField(default=True)
