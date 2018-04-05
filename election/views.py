@@ -69,8 +69,6 @@ def login_candidate(request):
             if user.is_active:
                 if user.is_candidate:
                     login(request, user)
-                    # albums = Album.objects.filter(user=request.user)
-                    # return render(request, 'candidate_details.html')  # , {'albums': albums})
                     return redirect('candidate_details', pk=user.candidate.pk)
                 else:
                     return render(request, 'candidate_login.html', {'error_message': 'Invalid candidate credentials'})
@@ -90,8 +88,6 @@ def login_voter(request):
             if user.is_active:
                 if user.is_voter:
                     login(request, user)
-                    # albums = Album.objects.filter(user=request.user)
-                    # return render(request, 'base.html')  # , {'albums': albums})
                     return redirect('voter_details', pk=user.voter.pk)
                 else:
                     return render(request, 'voter_login.html', {'error_message': 'Invalid voter credentials'})
@@ -141,6 +137,7 @@ def vote(request, pk):
     else:
         messages.success(request, 'Vote successful!')
         return redirect('voter_details', pk=request.user.voter.pk)
+
 
 def vote_confirm(request, pk):
     candidate = get_object_or_404(Candidate, pk=pk)
