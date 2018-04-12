@@ -1,3 +1,5 @@
-Django==2.0
-psycopg==2.7.4
+Django==2.0.4
 Pillow==5.1.0
+pkg-resources==0.0.0
+psycopg2==2.7.4
+pytz==2018.3
