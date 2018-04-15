@@ -78,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'electionsystem',
-        'USER': 'mehnaz',
+        'USER': 'user',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
